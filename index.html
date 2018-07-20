@@ -61,6 +61,11 @@
       font-family: Arial, sans-serif;
       color: #1c9c06;
     }
+    .iframe-wrap {
+      width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   </style>
 </head>
 <body>
@@ -73,30 +78,13 @@
 
     <main class="page-main">
       <h1>Hi, this is online page!</h1>
+      <div class="iframe-wrap">
+        <iframe src="//wikiroutes.info/widget?t=4&amp;c=2" frameborder="0" allowfullscreen="" scrolling="no" width="100%" height="500"></iframe><div style="font-size: 14px; line-height: 18px; text-align: right;"><a title="Wikiroutes" href="https://wikiroutes.info/" style="color: #f86433;">Маршруты городского транспорта на сайте wikiroutes.info</a></div>
+      </div>
     </main>
 
     <footer class="page-footer">
       Footer
-        <div id="disqus_thread" style="width: 100%;"></div>
-        <script>
-
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-        /*
-        var disqus_config = function () {
-        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        */
-        (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://https-khlystun-github-io-offline.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </footer>
 
   </div>
