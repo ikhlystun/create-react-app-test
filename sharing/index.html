@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Share</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="grid">
+        <div class="grid__col">
+          <div class="grid__item">
+            <a href="#popup-1" class="grid__item-content js-open-popup" data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo">
+              <span class="grid__item-title">Popup 1</span>
+            </a>
+            <footer class="grid__item-footer">
+              <a href="#" class="btn">Like</a>
+              <a href="#" class="btn">Share</a>
+            </footer>
+          </div>
+        </div>
+        <div class="grid__col">
+          <div class="grid__item">
+            <a href="#popup-2" class="grid__item-content js-open-popup" data-content="<img src='https://media.boingboing.net/wp-content/uploads/2018/05/cool-background1.png' alt=''>">
+              <span class="grid__item-title">Popup 2</span>
+            </a>
+            <footer class="grid__item-footer">
+              <a href="#" class="btn">Like</a>
+              <a href="#" class="btn">Share</a>
+            </footer>
+          </div>
+        </div>
+        <div class="grid__col">
+          <div class="grid__item">
+            <a href="#popup-3" class="grid__item-content js-open-popup" data-content="<embed class='popup__content-inner' src='http://aspero.pro/drupal.pdf' type='application/pdf'>">
+              <span class="grid__item-title">Popup 3</span>
+            </a>
+            <footer class="grid__item-footer">
+              <a href="#" class="btn">Like</a>
+              <a href="#" class="btn">Share</a>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- content popup -->
+  <div class="popup">
+    <a href="#" class="popup__close js-close-popup">x</a>
+    <div class="popup__body">
+      <div class="popup__content"></div>
+      <footer class="popup__footer">
+        <a href="#" class="share-btn js-open-share-popup">Share</a>
+      </footer>
+    </div>
+  </div>
+  <!-- /content popup -->
+
+  <!-- share popup -->
+  <div class="share-popup">
+    <div class="share-popup__inner">
+      <a href="#" class="share-popup__close js-close-share-popup">x</a>
+      <h5 class="share-popup__heading">Share</h5>
+      <div class="share__btns-group">
+        <a href="#" class="share__btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;">Facebook</a>
+        <a href="#" class="share__btn">Twitter</a>
+        <a href="#" class="share__btn">Pinterest</a>
+      </div>
+      <div class="share__field-wrap">
+        <input type="text" class="share__field js-share-field">
+      </div>
+    </div>
+  </div>
+  <!-- /share popup -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+
+    $(function () {
+
+      var hash = window.location.hash;
+
+      if (hash.length && hash != '#') {
+        $('.popup').addClass('popup--visible');
+      }
+
+      $('.js-open-popup').each(function () {
+        if (hash == $(this).attr('href')) {
+          var content = $(this).data('content');
+          $('.popup__content').html(content);
+        }
+      });
+
+    });
+
+    $('.js-open-popup').on('click', function (e) {
+      var content = $(this).data('content');
+      $('.popup__content').html(content);
+      $('.popup').addClass('popup--visible');
+    });
+
+    $('.js-close-popup').on('click', function (e) {
+      $('.popup').removeClass('popup--visible');
+      history.pushState("", document.title, window.location.pathname);
+      e.preventDefault();
+    });
+
+    $('.js-open-share-popup').on('click', function (e) {
+      $('.share-popup').addClass('share-popup--visible');
+      $('.js-share-field').val(window.location.href);
+      e.preventDefault();
+    });
+
+    $('.js-close-share-popup').on('click', function (e) {
+      $('.share-popup').removeClass('share-popup--visible');
+      e.preventDefault();
+    });
+  </script>
+</body>
+</html>
