@@ -6,18 +6,11 @@ import { Frontload } from 'react-frontload';
 import { ConnectedRouter } from 'connected-react-router';
 import createStore from './store';
 
-import createHistory from 'history/createBrowserHistory';
-
 import App from './app/app';
 import './index.css';
 
-const history = createHistory({
-  basename: process.env.PUBLIC_URL,
-});
-
 // Create a store and get back itself and its history object
-// const { store, history } = createStore();
-const { store } = createStore();
+const { store, history } = createStore();
 
 // Running locally, we should run on a <ConnectedRouter /> rather than on a <StaticRouter /> like on the server
 // Let's also let React Frontload explicitly know we're not rendering on the server here
