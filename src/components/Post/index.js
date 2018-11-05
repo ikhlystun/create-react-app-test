@@ -26,18 +26,32 @@ export default class Post extends PureComponent {
       return { isLiked: !prevState.isLiked };
     });
 
-    returnObj.forEach(post => {
-      if (post.id === this.props.post.id) {
-        post.liked = !this.state.isLiked;
+    if (returnObj.length === 0) {
+      returnObj.push({ id: this.props.post.id, liked: !this.state.isLiked });
+    } else {
+      let found = returnObj.some(post => {
+        return post.id === this.props.post.id;
+      });
+
+      if (found) {
+        returnObj.forEach(post => {
+          if (post.id === this.props.post.id) {
+            post.liked = !this.state.isLiked;
+          }
+        });
+      } else {
+        returnObj.push({ id: this.props.post.id, liked: !this.state.isLiked });
       }
-    });
+    }
 
     serialObj = JSON.stringify(returnObj);
     localStorage.setItem("env_react_sharing_posts", serialObj);
   }
 
   componentDidMount() {
-    if (localStorage.getItem("env_react_sharing_posts") !== null) {
+    if (localStorage.getItem("env_react_sharing_posts") === null) {
+      localStorage.setItem("env_react_sharing_posts", JSON.stringify([]));
+    } else {
       const returnObj = JSON.parse(
         localStorage.getItem("env_react_sharing_posts")
       );
